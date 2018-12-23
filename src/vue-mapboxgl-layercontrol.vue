@@ -1,9 +1,9 @@
 <template>
   <div class="vue-mapboxgl-layercontrol" >
-    <v-list >
-      <draggable v-model="myArray" :options="{handle: '.handle'}" @start="drag=true" @end="drag=false">
+    <v-list>
+      <draggable v-model="editableLayers" :options="{handle: '.handle'}" @start="" @end="endDrag">
         <v-list-group
-          v-for="layer in layers"
+          v-for="layer in editableLayers"
           v-model="layer.expanded"
           :key="layer.title"
           @click=""
@@ -36,19 +36,14 @@
               </v-flex>
             </v-layout>
           </v-container>
-
-
-
-
         </v-list-group>
-
       </draggable>
     </v-list>
   </div>
 </template>
 
 <script>
-  import Vue from 'vue'
+import Vue from 'vue'
 import Vuetify from 'vuetify'
 import draggable from 'vuedraggable'
 
@@ -65,15 +60,31 @@ export default {
       default: []
     }
   },
+  methods: {
+    endDrag (evt) {
+    }
+  },
   data() {
     return {
+
+    }
+  },
+  computed: {
+    editableLayers: {
+      get () {
+        return this.layers
+      },
+      // emit a new value for the .sync
+      set (layers) {
+        this.$emit('update:layers', layers)
+      }
     }
   },
   components: {
     draggable
   }
 }
-          </script>
+</script>
 
 <style scoped>
   .vue-mapboxgl-layercontrol >>> .header>.v-list__tile {

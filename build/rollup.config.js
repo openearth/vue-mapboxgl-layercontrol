@@ -15,7 +15,8 @@ const config = {
     globals: {
       'vue': 'Vue',
       'vue-sortable': 'VueSortable',
-      'vuetify': 'Vuetify'
+      'vuetify': 'Vuetify',
+      'vuedraggable': 'VueDraggable'
     }
   },
   plugins: [
